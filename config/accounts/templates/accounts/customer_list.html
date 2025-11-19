@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<h2 class="my-4">Customers</h2>
+
+<table class="table table-dark table-striped">
+    <tr>
+        <th>Name</th>
+        <th>Phone</th>
+        <th>Email</th>
+        <th>Loyalty Points</th>
+    </tr>
+
+    {% for c in customers %}
+    <tr>
+        <td>{{ c.name }}</td>
+        <td>{{ c.phone }}</td>
+        <td>{{ c.email }}</td>
+        <td>{{ c.loyalty_points }}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

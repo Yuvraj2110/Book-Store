@@ -1,0 +1,23 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<h2 class="my-3">📜 Suppliers</h2>
+
+<a href="{% url 'supplier_add' %}" class="btn btn-primary mb-3">Add Supplier</a>
+
+<table class="table table-dark table-striped">
+    <tr>
+        <th>Name</th>
+        <th>Phone</th>
+        <th>Email</th>
+    </tr>
+
+    {% for s in suppliers %}
+    <tr>
+        <td>{{ s.name }}</td>
+        <td>{{ s.phone }}</td>
+        <td>{{ s.email }}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

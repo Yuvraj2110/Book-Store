@@ -1,0 +1,33 @@
+{% extends "layout.html" %}
+
+{% block title %}Create PO{% endblock %}
+
+{% block content %}
+<div class="container my-4" style="max-width: 700px;">
+
+    <h2 class="mb-3">🛒 Create Purchase Order</h2>
+
+    <form method="post">
+        {% csrf_token %}
+
+        <div class="mb-3">
+            <label class="form-label">Supplier</label>
+            {{ form.supplier }}
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Expected Date</label>
+            {{ form.expected_date }}
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Note</label>
+            {{ form.note }}
+        </div>
+
+        <button class="btn btn-success">Create PO</button>
+        <a href="{% url 'po_list' %}" class="btn btn-secondary">Back</a>
+    </form>
+
+</div>
+{% endblock %}

@@ -1,0 +1,62 @@
+{% extends "layout.html" %}
+{% block title %}Checkout{% endblock %}
+
+{% block content %}
+<h2 class="my-4">🧾 Checkout</h2>
+
+<form method="POST" class="bg-dark p-4 rounded border border-secondary">
+    {% csrf_token %}
+
+    <h4>Select Customer</h4>
+
+    <div class="mb-3">
+        <label class="form-label">Choose Existing Customer</label>
+        <select name="customer_id" id="customer_select" class="form-select">
+            <option value="">-- New Customer --</option>
+            {% for customer in customers %}
+                <option value="{{ customer.id }}"
+                        data-name="{{ customer.name }}"
+                        data-phone="{{ customer.phone }}">
+                    {{ customer.name }} ({{ customer.phone }})
+                </option>
+            {% endfor %}
+        </select>
+        <small class="text-muted">Choose an existing customer or add a new one below.</small>
+    </div>
+
+    <hr class="border-secondary">
+
+    <h4>Customer Details</h4>
+
+    <div class="mb-3">
+        <label class="form-label">Customer Name</label>
+        <input type="text" name="customer_name" id="name_input" class="form-control" required>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Phone Number</label>
+        <input type="text" name="customer_phone" id="phone_input" class="form-control" required>
+    </div>
+
+    <button class="btn btn-primary">Confirm Checkout</button>
+    <a href="{% url 'sales' %}" class="btn btn-secondary">Cancel</a>
+</form>
+
+<script>
+// Auto-fill fields when selecting existing customer
+document.getElementById("customer_select").addEventListener("change", function() {
+    let selected = this.options[this.selectedIndex];
+
+    if (this.value === "") {
+        // New customer
+        document.getElementById("name_input").value = "";
+        document.getElementById("phone_input").value = "";
+    } else {
+        // Existing customer
+        document.getElementById("name_input").value = selected.getAttribute("data-name");
+        document.getElementById("phone_input").value = selected.getAttribute("data-phone");
+    }
+});
+</script>
+
+{% endblock %}

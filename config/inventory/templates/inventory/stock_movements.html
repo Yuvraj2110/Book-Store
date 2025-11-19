@@ -1,0 +1,33 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<h2 class="my-3">📜 Stock Movements Log</h2>
+
+<a href="{% url 'add_stock_movement' %}" class="btn btn-primary mb-3">
+    Add Stock Movement
+</a>
+
+<a href="{% url 'stock_summary' %}" class="btn btn-secondary mb-3">
+    Back to Stock Summary
+</a>
+
+<table class="table table-dark table-striped">
+    <tr>
+        <th>Book</th>
+        <th>Quantity</th>
+        <th>Reason</th>
+        <th>Source</th>
+        <th>Date</th>
+    </tr>
+
+    {% for m in movements %}
+    <tr class="{% if m.quantity < 0 %}table-danger{% else %}table-success{% endif %}">
+        <td>{{ m.book.title }}</td>
+        <td>{{ m.quantity }}</td>
+        <td>{{ m.reason }}</td>
+        <td>{{ m.source }}</td>
+        <td>{{ m.created_at|date:"Y-m-d H:i" }}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

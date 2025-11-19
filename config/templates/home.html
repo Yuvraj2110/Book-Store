@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="container mt-5 text-center">
+
+    <h1 class="mb-4">📚 Welcome to BooksBar</h1>
+
+    <p class="lead">Your complete bookstore management system</p>
+
+    <div class="d-flex justify-content-center gap-3 mt-5">
+
+        <a href="/books/" class="btn btn-primary btn-lg">
+            📘 Books
+        </a>
+
+        <a href="/inventory/" class="btn btn-warning btn-lg">
+            📦 Inventory
+        </a>
+
+        <a href="/suppliers/" class="btn btn-info btn-lg">
+            🏭 Suppliers
+        </a>
+
+        <a href="/sales/" class="btn btn-success btn-lg">
+            🛒 Sales (POS)
+        </a>
+    </div>
+
+</div>
+{% endblock %}

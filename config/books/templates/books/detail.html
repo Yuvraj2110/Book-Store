@@ -1,0 +1,53 @@
+{% extends "layout.html" %}
+
+{% block title %}
+{{ book.title }}
+{% endblock %}
+
+{% block content %}
+
+<div class="card my-4">
+    <div class="row g-0">
+
+        <div class="col-md-4">
+            {% if book.cover %}
+            <img src="{{ book.cover.url }}" class="img-fluid rounded" alt="{{ book.title }}">
+            {% else %}
+            <div class="bg-secondary text-center text-white p-5">
+                No Cover Image
+            </div>
+            {% endif %}
+        </div>
+
+        <div class="col-md-8">
+            <div class="card-body">
+
+                <h2 class="card-title">{{ book.title }}</h2>
+
+                <p>
+                    <strong>Author:</strong>
+                    {% for a in book.authors.all %}
+                        {{ a.name }}{% if not forloop.last %}, {% endif %}
+                    {% endfor %}
+                </p>
+
+                <p><strong>ISBN:</strong> {{ book.isbn }}</p>
+
+                <p><strong>Category:</strong>
+                    {% for c in book.categories.all %}
+                        {{ c.name }}{% if not forloop.last %}, {% endif %}
+                    {% endfor %}
+                </p>
+
+                <p><strong>Price:</strong> ₹ {{ book.price }}</p>
+                <p><strong>Available Stock:</strong> {{ book.stock }}</p>
+
+                <a href="/books/" class="btn btn-secondary btn-sm">Back to Books</a>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}

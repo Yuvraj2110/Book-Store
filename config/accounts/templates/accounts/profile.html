@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+{% block title %}My Profile{% endblock %}
+
+{% block content %}
+<div class="container my-4">
+
+    <h2 class="mb-4">👤 My Profile</h2>
+
+    <!-- USER DETAILS CARD -->
+    <div class="card bg-dark border-secondary p-4" style="max-width: 550px;">
+        <h4 class="text-primary mb-3">{{ request.user.username|title }}</h4>
+
+        <p><strong>Full Name:</strong> {{ customer.name }}</p>
+        <p><strong>Email:</strong> {{ customer.email }}</p>
+        <p><strong>Phone:</strong> {{ customer.phone }}</p>
+        <hr>
+
+        <a href="{% url 'logout' %}" class="btn btn-danger">Logout</a>
+    </div>
+
+</div>
+{% endblock %}

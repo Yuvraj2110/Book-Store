@@ -1,0 +1,42 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<h2 class="my-3">➕ Add Stock Movement</h2>
+
+<form method="POST" class="bg-dark p-4 rounded border border-secondary">
+    {% csrf_token %}
+
+    <div class="mb-3">
+        <label class="form-label">Book</label>
+        <select name="book" class="form-select" required>
+            <option value="">Select book</option>
+            {% for book in books %}
+            <option value="{{ book.id }}">{{ book.title }}</option>
+            {% endfor %}
+        </select>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Quantity</label>
+        <input type="number" name="quantity" class="form-control" required>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Reason</label>
+        <select name="reason" class="form-select">
+            <option value="adjustment">Manual Adjustment</option>
+            <option value="purchase">Purchase Received</option>
+            <option value="sale">Sale (manual)</option>
+        </select>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Source / Note</label>
+        <input type="text" name="source" class="form-control">
+    </div>
+
+    <button type="submit" class="btn btn-primary">Save</button>
+    <a href="{% url 'stock_movements' %}" class="btn btn-secondary">Cancel</a>
+</form>
+
+{% endblock %}

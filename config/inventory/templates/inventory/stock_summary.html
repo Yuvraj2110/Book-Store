@@ -1,0 +1,34 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<h2 class="my-3">📦 Stock Summary</h2>
+
+<a href="{% url 'stock_movements' %}" class="btn btn-secondary mb-3">
+    View Stock Movements Log
+</a>
+
+<table class="table table-dark table-striped">
+    <tr>
+        <th>Book</th>
+        <th>Current Stock</th>
+        <th>Reorder Level</th>
+        <th>Status</th>
+    </tr>
+
+    {% for item in summary %}
+    <tr>
+        <td>{{ item.book.title }}</td>
+        <td>{{ item.stock }}</td>
+        <td>{{ item.reorder }}</td>
+
+        <td>
+            {% if item.low %}
+            <span class="badge bg-danger">Low Stock</span>
+            {% else %}
+            <span class="badge bg-success">OK</span>
+            {% endif %}
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}
