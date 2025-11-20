@@ -5,12 +5,13 @@ sqlparse==0.5.3
 tzdata==2025.2
 whitenoise==6.11.0
 
-# Deployment dependencies
-# gunicorn==21.2.0
-# dj-database-url==2.2.0
-# psycopg2-binary==2.9.9
-# python-dotenv==1.0.1
+
+Deployment dependencies
+gunicorn==23.0.0
+dj-database-url==2.2.0
+psycopg2-binary==2.9.9
+python-dotenv==1.0.1
 
 
-# packaging==25.0
+packaging==25.0
 
